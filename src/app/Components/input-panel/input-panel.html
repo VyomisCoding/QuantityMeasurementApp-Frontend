@@ -1,0 +1,106 @@
+<div class="calc-container">
+
+  <!-- 🔄 CONVERSION -->
+  <div *ngIf="operation === 'convert'" class="calc-row">
+
+    <!-- INPUT -->
+    <div class="panel">
+      <label>Input</label>
+      <input type="number" placeholder="Enter value" [ngModel]="value1()" (ngModelChange)="value1.set($event)">
+      <select [ngModel]="unit1()" (ngModelChange)="unit1.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- ACTION -->
+    <button class="action-btn" (click)="sendData()">Convert</button>
+
+    <!-- OUTPUT -->
+    <div class="panel result-panel">
+      <label>Result</label>
+      <input type="text" [ngModel]="result()" readonly placeholder="Result">
+      <select [ngModel]="targetUnit()" (ngModelChange)="targetUnit.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- ⚖️ COMPARE -->
+  <div *ngIf="operation === 'compare'" class="calc-row">
+
+    <!-- INPUT 1 -->
+    <div class="panel">
+      <label>First</label>
+      <input type="number" placeholder="Enter value" [ngModel]="value1()" (ngModelChange)="value1.set($event)">
+      <select [ngModel]="unit1()" (ngModelChange)="unit1.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- SYMBOL -->
+    <div class="symbol">
+      VS
+    </div>
+
+    <!-- INPUT 2 -->
+    <div class="panel">
+      <label>Second</label>
+      <input type="number" placeholder="Enter value" [ngModel]="value2()" (ngModelChange)="value2.set($event)">
+      <select [ngModel]="unit2()" (ngModelChange)="unit2.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- ACTION -->
+    <button class="action-btn" (click)="sendData()">Compare</button>
+
+    <!-- OUTPUT -->
+    <div class="panel result-panel">
+      <label>Result</label>
+      <input type="text" [ngModel]="result()" readonly placeholder="Result">
+    </div>
+
+  </div>
+
+  <!-- ➕ ➖ ➗ -->
+  <div *ngIf="operation !== 'convert' && operation !== 'compare'" class="calc-row">
+
+    <!-- INPUT 1 -->
+    <div class="panel">
+      <label>First</label>
+      <input type="number" placeholder="Enter value" [ngModel]="value1()" (ngModelChange)="value1.set($event)">
+      <select [ngModel]="unit1()" (ngModelChange)="unit1.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- SYMBOL -->
+    <div class="symbol">
+      {{ operation === 'add' ? '+' : operation === 'subtract' ? '-' : '/' }}
+    </div>
+
+    <!-- INPUT 2 -->
+    <div class="panel">
+      <label>Second</label>
+      <input type="number" placeholder="Enter value" [ngModel]="value2()" (ngModelChange)="value2.set($event)">
+      <select [ngModel]="unit2()" (ngModelChange)="unit2.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- ACTION -->
+    <button class="action-btn" (click)="sendData()">Calculate</button>
+
+    <!-- OUTPUT -->
+    <div class="panel result-panel">
+      <label>Result</label>
+      <input type="text" [ngModel]="result()" readonly placeholder="Result">
+      <select [ngModel]="targetUnit()" (ngModelChange)="targetUnit.set($event)">
+        <option *ngFor="let u of units">{{ u }}</option>
+      </select>
+    </div>
+
+  </div>
+
+</div>
